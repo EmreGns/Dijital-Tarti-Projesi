@@ -26,11 +26,11 @@ Bu proje, MSP430 mikrodenetleyici ve HX711 ADC entegresi kullanarak yük hücres
 
 ## Proje Yapısı
 
-dijital-tarti-projesi/
-├── msp430/ # MSP430 için gömülü yazılım
-├── esp8266/ # ESP8266 için Wi-Fi kodları
-├── webserver/ # Python Flask tabanlı web sunucusu
-├── pcb/ # Devre şeması ve PCB tasarımı
+dijital-tarti-projesi/    
+├── msp430/ # MSP430 için gömülü yazılım    
+├── esp8266/ # ESP8266 için Wi-Fi kodları    
+├── webserver/ # Python Flask tabanlı web sunucusu    
+├── pcb/ # Devre şeması ve PCB tasarımı    
 └── README.md
 
 
