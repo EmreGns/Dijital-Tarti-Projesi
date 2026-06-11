@@ -57,8 +57,7 @@ Sistemin Altium Designer / EasyEDA ortamında çizilen şematik diyagramı, yoll
 ### 💻 Geliştirme, Kalibrasyon ve Test Aşamaları
 Sistemin breadboard entegrasyon süreçleri, fiziksel ağırlık referansıyla yapılan kalibrasyon aşaması ve lehimlemesi tamamlanmış final prototip kartı:
 
-| 🔬 Breadboard Entegrasyon Testi | 🎯 Fiziksel Kalibrasyon Testi |
-| --- | 
+| 🔬 Breadboard Entegrasyon Testi 
 | <img width="2048" height="1152" alt="cnbhvc" src="https://github.com/user-attachments/assets/995b3b5d-2489-4186-ac0c-82b811f8ab39" />|
 
 | 🟢 Tamamlanmış Donanım (Ön Yüz) | 🔴 Tamamlanmış Donanım (Arka Yüz) |
