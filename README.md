@@ -58,8 +58,8 @@ Sistemin Altium Designer / EasyEDA ortamında çizilen şematik diyagramı, yoll
 Sistemin breadboard entegrasyon süreçleri, fiziksel ağırlık referansıyla yapılan kalibrasyon aşaması ve lehimlemesi tamamlanmış final prototip kartı:
 
 | 🔬 Breadboard Entegrasyon Testi | 🎯 Fiziksel Kalibrasyon Testi |
-| --- | --- |
-| <img width="400" alt="Breadboard Entegrasyon Testi" src="https://github.com/user-attachments/assets/275eeb24-7d7a-4105-a905-9ce0d61d340b" /> | <img width="400" alt="Fiziksel Kalibrasyon Test Aşaması" src="https://github.com/user-attachments/assets/aee11251-e99a-48aa-8e86-cc5deda71eb8" /> |
+| --- | 
+| <img width="2048" height="1152" alt="cnbhvc" src="https://github.com/user-attachments/assets/995b3b5d-2489-4186-ac0c-82b811f8ab39" />|
 
 | 🟢 Tamamlanmış Donanım (Ön Yüz) | 🔴 Tamamlanmış Donanım (Arka Yüz) |
 | --- | --- |
@@ -71,7 +71,7 @@ Sistemin breadboard entegrasyon süreçleri, fiziksel ağırlık referansıyla y
 ESP8266 tarafından gönderilen ağırlık verisinin lokal ağ üzerinden (172.20.10.2:5000) Python backend terminalinde loglanması ve anlık olarak web arayüzüne basılması:
 
 <p align="center">
-  <img width="850" alt="Flask Web Sunucusu Canlı Veri Takibi" src="https://github.com/user-attachments/assets/48b3d171-fe7e-4952-ad7d-c003b736d795" />
+  <img width="1386" height="779" alt="kjhbkjhb" src="https://github.com/user-attachments/assets/458647d5-6574-4ce4-8632-c354df7eded6" />
 </p>
 
 ---
