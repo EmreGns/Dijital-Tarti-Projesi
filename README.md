@@ -54,15 +54,12 @@ Sistemin Altium Designer / EasyEDA ortamında çizilen şematik diyagramı, yoll
 
 ---
 
-### 💻 Geliştirme, Kalibrasyon ve Test Aşamaları
-Sistemin breadboard entegrasyon süreçleri, fiziksel ağırlık referansıyla yapılan kalibrasyon aşaması ve lehimlemesi tamamlanmış final prototip kartı:
+### 💻 Geliştirme ve Prototip Aşamaları
+Sistemin breadboard üzerindeki ilk entegrasyon testi, üretilen PCB'nin ön ve arka yüz montaj aşamaları:
 
-| 🔬 Breadboard Entegrasyon Testi 
-| <img width="2048" height="1152" alt="cnbhvc" src="https://github.com/user-attachments/assets/995b3b5d-2489-4186-ac0c-82b811f8ab39" />|
-
-| 🟢 Tamamlanmış Donanım (Ön Yüz) | 🔴 Tamamlanmış Donanım (Arka Yüz) |
-| --- | --- |
-| <img width="400" alt="Lehimlenmiş PCB Ön Yüz" src="https://github.com/user-attachments/assets/c3661b28-df7c-4442-8cc7-23ee735e1929" /> | <img width="400" alt="Lehimlenmiş PCB Arka Yüz" src="https://github.com/user-attachments/assets/402a6ed1-13e5-4e0c-b184-82c796741333" /> |
+| 🔬 Breadboard Entegrasyon Testi | 🟢 Tamamlanmış Donanım (Ön Yüz) | 🔴 Tamamlanmış Donanım (Arka Yüz) |
+| :---: | :---: | :---: |
+| <img width="260" alt="Breadboard Entegrasyon Testi" src="https://github.com/user-attachments/assets/995b3b5d-2489-4186-ac0c-82b811f8ab39" /> | <img width="260" alt="Lehimlenmiş PCB Ön Yüz" src="https://github.com/user-attachments/assets/c3661b28-df7c-4442-8cc7-23ee735e1929" /> | <img width="260" alt="Lehimlenmiş PCB Arka Yüz" src="https://github.com/user-attachments/assets/402a6ed1-13e5-4e0c-b184-82c796741333" /> |
 
 ---
 
