@@ -18,52 +18,6 @@ Sistem, donanımsal sinyal işlemeden web arayüzündeki görselleştirmeye kada
 ## ⚙️ Sistem Mimarisi ve Blok Diyagramı
 
 <p align="center">
-  <img width="550" alt="blok diyagram" src="[https://github.com/user-attachments/assets/702f74fa-c1e0-4e58-b94b-7acee06d3378](https://github.com/user-attachments/assets/702f74fa-c1e0-4e58-b94b-7acee06d3378)" />
-</p>
-
----
-
-## 🔩 Kullanılan Teknolojiler
-
-### Donanım Katmanı
-- **MSP430G2553:** Ana denetleyici; sensör okuma, UART paketleme ve zamanlama lojiğini yürütür.
-- **HX711 Modülü:** Sinyal yükseltici ve 24-bit yüksek hassasiyetli ADC.
-- **ESP-01 (ESP8266):** Wi-Fi tabanlı kablosuz iletişim modülü.
-- **CH340 USB-TTL:** Seri haberleşme hattını izleme ve hata ayıklama (PuTTY) aracı.
-- **Özel Güç Kaynağı:** Wi-Fi modülünün ani akım dalgalanmalarını filtreleyen, 220V AC'yi doğrultup stabil 3.3V DC sağlayan el yapımı regüle kartı.
-
-### Yazılım Katmanı
-- **MSP430 Firmware:** Gömülü C Dili (Code Composer Studio).
-- **ESP8266 Firmware:** C++ / Arduino IDE.
-- **Web Sunucusu:** Python, Flask Framework (VS Code).
-
----
-
-Görselleri tek tek inceleyip hangi linkin hangi fotoğrafa ait olduğunu netleştirdim. Tablo yapısındaki satır kaymalarını ve hatalı eşleşmeleri tamamen düzelterek linkleri jilet gibi yerlerine oturtup sabitledim.
-
-Doğrudan kopyalama butonunu kullanarak tek seferde README.md dosyana yapıştırabileceğin, tüm bağlantıları doğrulanmış güncel kod bloğu:
-
-Markdown
-# ⚖️ MSP430 ile Kablosuz Dijital Tartı Projesi
-
-Bu proje, **MSP430G2553 mikrodenetleyicisi** ve **HX711 ADC entegresi** kullanılarak yük hücresinden (load cell) alınan ağırlık verilerini, **ESP8266 (ESP-01)** üzerinden lokal bir web sunucusuna kablosuz (Wi-Fi) aktaran ve anlık takip sağlayan bir IoT dijital tartı sistemidir.
-
----
-
-## 📌 Proje Mantığı ve Çalışma Akışı
-
-Sistem, donanımsal sinyal işlemeden web arayüzündeki görselleştirmeye kadar 4 ana aşamadan oluşur:
-
-1. **Hassas Ölçüm (Donanım):** 1 kg kapasiteli yük hücresi üzerine binen yük, **HX711 24-bit ADC entegresi** tarafından okunarak dijital forma dönüştürülür.
-2. **Sinyal İşleme (Gömülü Yazılım):** MSP430G2553 mikrodenetleyicisi ham veriyi alır, `OFFSET` ve `SCALE_FACTOR` kalibrasyon lojiğini uygulayarak ağırlığı gram cinsinden doğrular.
-3. **Kablosuz İletişim (Network):** MSP430, doğrulanan ağırlık paketini UART seri haberleşme üzerinden **ESP8266 (ESP-01)** modülüne iletir. Modül, yerel Wi-Fi ağına bağlanarak veriyi HTTP POST isteği ile sunucuya fırlatır.
-4. **Dashboard (Web Sunucu):** Python/Flask tabanlı backend servisi gelen post isteklerini yakalar ve web arayüzünde veriyi 1 saniyede bir otomatik yenileyerek canlı olarak ekrana basar.
-
----
-
-## ⚙️ Sistem Mimarisi ve Blok Diyagramı
-
-<p align="center">
   <img width="550" alt="Sistem Blok Diyagramı" src="https://github.com/user-attachments/assets/702f74fa-c1e0-4e58-b94b-7acee06d3378" />
 </p>
 
@@ -100,10 +54,10 @@ Sistemin Altium Designer / EasyEDA ortamında çizilen şematik diyagramı, yoll
 
 ---
 
-### 💻 Geliştirme, Kalibrasyon ve Test Masası
-Sistemin breadboard aşamasından el üretimi PCB kart haline getirilmesine, ardından ağırlık referansıyla yapılan kalibrasyon doğrulama testlerine ait çalışma ortamı:
+### 💻 Geliştirme, Kalibrasyon ve Test Aşamaları
+Sistemin breadboard entegrasyon süreçleri, fiziksel ağırlık referansıyla yapılan kalibrasyon aşaması ve lehimlemesi tamamlanmış final prototip kartı:
 
-| 🔬 Breadboard Entegrasyon Testi | 🪚 Üretilen ve Delinen Ham PCB |
+| 🔬 Breadboard Entegrasyon Testi | 🎯 Fiziksel Kalibrasyon Testi |
 | --- | --- |
 | <img width="400" alt="Breadboard Entegrasyon Testi" src="https://github.com/user-attachments/assets/275eeb24-7d7a-4105-a905-9ce0d61d340b" /> | <img width="400" alt="Fiziksel Kalibrasyon Test Aşaması" src="https://github.com/user-attachments/assets/aee11251-e99a-48aa-8e86-cc5deda71eb8" /> |
 
@@ -112,11 +66,12 @@ Sistemin breadboard aşamasından el üretimi PCB kart haline getirilmesine, ard
 | <img width="400" alt="Lehimlenmiş PCB Ön Yüz" src="https://github.com/user-attachments/assets/c3661b28-df7c-4442-8cc7-23ee735e1929" /> | <img width="400" alt="Lehimlenmiş PCB Arka Yüz" src="https://github.com/user-attachments/assets/402a6ed1-13e5-4e0c-b184-82c796741333" /> |
 
 ---
+
 ### 🌐 Canlı HTTP Web Dashboard
 ESP8266 tarafından gönderilen ağırlık verisinin lokal ağ üzerinden (172.20.10.2:5000) Python backend terminalinde loglanması ve anlık olarak web arayüzüne basılması:
 
 <p align="center">
-  <img width="850" alt="Flask Web Sunucusu Canlı Veri Takibi" src="[https://github.com/user-attachments/assets/48b3d171-fe7e-4952-ad7d-c003b736d795](https://github.com/user-attachments/assets/48b3d171-fe7e-4952-ad7d-c003b736d795)" />
+  <img width="850" alt="Flask Web Sunucusu Canlı Veri Takibi" src="https://github.com/user-attachments/assets/48b3d171-fe7e-4952-ad7d-c003b736d795" />
 </p>
 
 ---
@@ -133,11 +88,10 @@ dijital-tarti-projesi/
 ---
 
 ## 🚀 Kurulum ve Çalıştırma
-
 1. **Donanım Bağlantıları:** MSP430, HX711 ve ESP8266 bağlantılarını şemaya uygun şekilde tamamlayın. Cihaza harici güç kaynağından 3.3V verin.
 2. **Firmware Yüklemesi:** `msp430/` klasöründeki kodları CCS ile MCU'ya, `esp8266/` kodlarını ise kendi Wi-Fi ağ bilgilerinizi girerek modüle flaşlayın.
 3. **Sunucuyu Başlatma:** Web sunucu dizinine giderek Flask uygulamasını çalıştırın:
    ```bash
    cd webserver
    python app.py
-Tarayıcınızdan sunucu adresine (örn: http://localhost:5000) giderek ağırlık verilerini canlı olarak izleyebilirsiniz.   
+Tarayıcınızdan sunucu adresine (örn: http://localhost:5000) giderek ağırlık verilerini canlı olarak izleyebilirsiniz.
