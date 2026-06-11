@@ -1,61 +1,76 @@
 # ⚖️ Dijital Tartı Projesi
 
-Bu proje, **MSP430 mikrodenetleyici** ve **HX711 ADC entegresi** kullanarak yük hücresinden alınan ağırlık verilerini kablosuz olarak **ESP8266** modülü üzerinden bir web sunucusuna ileten dijital tartı sistemidir.
+Bu proje, **MSP430G2553 mikrodenetleyici** ve **HX711 ADC entegresi** kullanarak yük hücresinden (load cell) alınan hassas ağırlık verilerini, **ESP8266 (ESP-01)** Wi-Fi modülü üzerinden lokal bir web sunucusuna kablosuz ileten ve anlık izleme sağlayan bir IoT dijital tartı sistemidir.
 
 ---
 
 ## ✨ Özellikler
 
-- MSP430 mikrodenetleyici ile HX711'den **24 bit çözünürlükte** ağırlık verisi okuma
-- **ESP8266 Wi-Fi** modülü ile kablosuz veri aktarımı
-- **Flask tabanlı Python** web sunucusu ile ağırlık verilerinin canlı izlenmesi
-- **PCB tasarımı** ve prototip üretimi ile donanım-yazılım entegrasyonu
+- 🔬 **Hassas Ölçüm:** MSP430 ile HX711 amplifikatöründen **24-bit çözünürlükte** ham veri okuma ve kalibrasyon lojiği.
+- 📡 **Kablosuz Veri Aktarımı:** ESP8266 Wi-Fi modülü üzerinden UART haberleşmesi kullanılarak verilerin HTTP protokolüyle sunucuya post edilmesi.
+- 🌐 **Canlı Web Dashboard:** Python / Flask tabanlı web sunucusu ile ağırlık verilerinin tarayıcı üzerinden 1 saniyede bir otomatik yenilenerek canlı izlenmesi.
+- 🛠️ **Donanım Entegrasyonu:** Özel PCB tasarımı, harici güç kaynağı entegrasyonu ve fiziksel kalibrasyon testleri.
+
+---
+
+## 📸 Prototip ve Canlı Takip Ekranları
+
+### 🛠️ Geliştirme Ortamı ve Fiziksel Prototip Testi
+Sistemin breadboard üzerindeki donanım kurulumu, kalibrasyon süreçleri ve test masası üzerindeki aktif çalışma durumu (Su şişesi ile ağırlık doğrulama testi):
+
+<p align="center">
+<img width="2048" height="1152" alt="cnbhvc" src="https://github.com/user-attachments/assets/a612eaa8-9596-4304-9218-58be0dedca4e" /></p>
+
+---
+
+### 💻 Flask Web Sunucusu ve Veri Takip Arayüzü
+Lokal ağdaki cihazdan (172.20.10.2) gelen ağırlık verilerinin Flask HTTP API üzerinden yakalanması, VS Code terminalinden loglanması ve web arayüzünde eş zamanlı gösterilmesi:
+
+<p align="center">
+  <img width="1386" height="779" alt="2" src="https://github.com/user-attachments/assets/87281a93-ac6f-413e-b9c3-1ca3db6f91f2" />
+</p>
 
 ---
 
 ## 🔩 Donanım Bileşenleri
 
-| Bileşen | Açıklama |
+| Bileşen | Açıklama / Görevi |
 |--------|----------|
-| MSP430G2553 | Geliştirme kartı (ana MCU) |
-| HX711 | Yük hücresi amplifikatörü |
-| Load Cell | 1 kg yük hücresi |
-| ESP-01 (ESP8266) | Wi-Fi modülü |
-| CH340 | USB-TTL dönüştürücü |
-| Özel PCB | Özelleştirilmiş devre tasarımı |
+| **MSP430G2553** | Ana mikrodenetleyici (MCU). Sensör okumasını ve UART paket yönetimini yapar. |
+| **HX711** | 24-bit yüksek hassasiyetli yük hücresi amplifikatörü ve ADC entegresi. |
+| **Load Cell (Yük Hücresi)** | 1 kg kapasiteli ağırlık sensörü. |
+| **ESP-01 (ESP8266)** | Sunucu ile kablosuz haberleşmeyi sağlayan Wi-Fi modülü. |
+| **Harici Güç Kaynağı** | Sistemin ve sensörlerin kararlı çalışması için regüleli 3.3V besleme. |
 
 ---
 
-## 💻 Yazılım Bileşenleri
+## 💻 Yazılım Mimarisi
 
-| Katman | Teknoloji |
+| Katman | Kullanılan Teknoloji / Dil |
 |--------|-----------|
-| MSP430 Firmware | C dili, Code Composer Studio |
-| ESP8266 Firmware | Arduino IDE, HTTP veri gönderimi |
-| Web Sunucusu | Python / Flask (VS Code) |
+| **MSP430 Firmware** | Gömülü C Dili, Code Composer Studio (CCS) |
+| **ESP8266 Firmware** | AT Komutları / C++, Arduino IDE |
+| **Web Server & Backend** | Python, Flask Framework (VS Code) |
+| **Frontend UI** | HTML, CSS (1s anlık veri yenileme scripti) |
 
 ---
 
 ## 🗂️ Proje Yapısı
-
-```
 dijital-tarti-projesi/
-├── msp430/      # MSP430 için gömülü yazılım
-├── esp8266/     # ESP8266 için Wi-Fi kodları
-├── webserver/   # Python Flask tabanlı web sunucusu
-├── pcb/         # Devre şeması ve PCB tasarımı
+├── msp430/      # MSP430 için gömülü C kodları
+├── esp8266/     # ESP8266 için Wi-Fi ve HTTP bağlantı kodları
+├── webserver/   # Python Flask tabanlı web sunucusu (app.py ve template dosyaları)
+├── pcb/         # Devre şeması ve PCB tasarım dosyaları
 └── README.md
-```
 
 ---
 
-## 🚀 Kullanım
+## 🚀 Kurulum ve Çalıştırma
 
-1. MSP430 ve HX711 devresini kurun, MSP430'a ilgili kodları yükleyin. Karta güç kaynağı ile 3.3V sağlayın.
-2. ESP8266'yı Wi-Fi bilgileriyle yapılandırarak HTTP gönderimi yapacak şekilde programlayın.
-3. Python web sunucusunu çalıştırın:
+1. **Donanım Bağlantıları:** MSP430, HX711 ve ESP8266 bağlantılarını şemaya uygun şekilde tamamlayın. Cihaza harici güç kaynağından 3.3V verin.
+2. **Firmware Yüklemesi:** `msp430/` klasöründeki kodları CCS ile MCU'ya, `esp8266/` kodlarını ise kendi Wi-Fi ağ bilgilerinizi girerek modüle flaşlayın.
+3. **Sunucuyu Başlatma:** Web sunucusu dizinine giderek Flask uygulamasını çalıştırın:
    ```bash
    cd webserver
    python app.py
-   ```
-4. ESP8266'dan gelen veriler web arayüzünde **canlı** olarak görüntülenecektir.
+Tarayıcınızdan sunucu adresine (örn: http://localhost:5000) giderek ağırlık verilerini canlı olarak izleyebilirsiniz.
